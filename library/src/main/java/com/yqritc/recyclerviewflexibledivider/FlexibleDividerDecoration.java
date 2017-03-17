@@ -38,7 +38,7 @@ public abstract class FlexibleDividerDecoration extends RecyclerView.ItemDecorat
     protected SizeProvider mSizeProvider;
     protected boolean mShowLastDivider;
     protected boolean mPositionInsideItem;
-    private Paint mPaint;
+    protected Paint mPaint;
 
     protected FlexibleDividerDecoration(Builder builder) {
         if (builder.mPaintProvider != null) {
@@ -184,7 +184,7 @@ public abstract class FlexibleDividerDecoration extends RecyclerView.ItemDecorat
      * @return offset for how many views we don't have to draw a divider or 1 if its a
      * LinearLayoutManager
      */
-    private int getLastDividerOffset(RecyclerView parent) {
+    protected int getLastDividerOffset(RecyclerView parent) {
         if (parent.getLayoutManager() instanceof GridLayoutManager) {
             GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
             GridLayoutManager.SpanSizeLookup spanSizeLookup = layoutManager.getSpanSizeLookup();
@@ -208,7 +208,7 @@ public abstract class FlexibleDividerDecoration extends RecyclerView.ItemDecorat
      * @param parent   RecyclerView
      * @return true if the divider can be skipped as it is in the same row as the previous one.
      */
-    private boolean wasDividerAlreadyDrawn(int position, RecyclerView parent) {
+    protected boolean wasDividerAlreadyDrawn(int position, RecyclerView parent) {
         if (parent.getLayoutManager() instanceof GridLayoutManager) {
             GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
             GridLayoutManager.SpanSizeLookup spanSizeLookup = layoutManager.getSpanSizeLookup();
@@ -227,7 +227,7 @@ public abstract class FlexibleDividerDecoration extends RecyclerView.ItemDecorat
      * @param parent   RecyclerView
      * @return group index of items
      */
-    private int getGroupIndex(int position, RecyclerView parent) {
+    protected int getGroupIndex(int position, RecyclerView parent) {
         if (parent.getLayoutManager() instanceof GridLayoutManager) {
             GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
             GridLayoutManager.SpanSizeLookup spanSizeLookup = layoutManager.getSpanSizeLookup();

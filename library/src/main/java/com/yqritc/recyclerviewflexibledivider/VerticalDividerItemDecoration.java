@@ -13,7 +13,7 @@ import android.view.View;
  */
 public class VerticalDividerItemDecoration extends FlexibleDividerDecoration {
 
-    private MarginProvider mMarginProvider;
+    protected MarginProvider mMarginProvider;
 
     protected VerticalDividerItemDecoration(Builder builder) {
         super(builder);
@@ -80,7 +80,7 @@ public class VerticalDividerItemDecoration extends FlexibleDividerDecoration {
         }
     }
 
-    private int getDividerSize(int position, RecyclerView parent) {
+    protected int getDividerSize(int position, RecyclerView parent) {
         if (mPaintProvider != null) {
             return (int) mPaintProvider.dividerPaint(position, parent).getStrokeWidth();
         } else if (mSizeProvider != null) {
