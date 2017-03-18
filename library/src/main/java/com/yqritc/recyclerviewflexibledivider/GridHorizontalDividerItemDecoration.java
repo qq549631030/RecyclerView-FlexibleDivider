@@ -11,15 +11,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Vertical divider for Vertical grid
- * Created by huangx on 2017/3/17.
+ * Horizontal divider for Horizontal grid
+ * Created by huangx on 2017/3/18.
  */
 
-public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecoration {
+public class GridHorizontalDividerItemDecoration extends HorizontalDividerItemDecoration {
 
     protected boolean showDividerOnEdge;
 
-    protected GridVerticalDividerItemDecoration(Builder builder) {
+    protected GridHorizontalDividerItemDecoration(Builder builder) {
         super(builder);
         showDividerOnEdge = builder.showDividerOnEdge;
     }
@@ -29,7 +29,7 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
         if (!(parent.getLayoutManager() instanceof GridLayoutManager)) {
             super.onDraw(c, parent, state);
         }
-        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.VERTICAL) {
             super.onDraw(c, parent, state);
         }
         RecyclerView.Adapter adapter = parent.getAdapter();
@@ -112,37 +112,37 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
         int transitionX = (int) ViewCompat.getTranslationX(child);
         int transitionY = (int) ViewCompat.getTranslationY(child);
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-        bounds.top = child.getTop() + mMarginProvider.dividerTopMargin(position, parent) + transitionY;
-        bounds.bottom = child.getBottom() - mMarginProvider.dividerBottomMargin(position, parent) + transitionY;
+        bounds.left = child.getLeft() + mMarginProvider.dividerLeftMargin(position, parent) + transitionX;
+        bounds.right = child.getRight() - mMarginProvider.dividerRightMargin(position, parent) + transitionX;
         int dividerSize = getDividerSize(position, parent);
         boolean isReverseLayout = isReverseLayout(parent);
         if (mDividerType == DividerType.DRAWABLE) {
             // set left and right position of divider
             if (isReverseLayout) {
-                bounds.right = child.getLeft() - params.leftMargin + transitionX;
-                bounds.left = bounds.right - dividerSize;
+                bounds.bottom = child.getTop() - params.topMargin + transitionY;
+                bounds.top = bounds.bottom - dividerSize;
             } else {
-                bounds.left = child.getRight() + params.rightMargin + transitionX;
-                bounds.right = bounds.left + dividerSize;
+                bounds.top = child.getBottom() + params.bottomMargin + transitionY;
+                bounds.bottom = bounds.top + dividerSize;
             }
         } else {
             // set center point of divider
             int halfSize = dividerSize / 2;
             if (isReverseLayout) {
-                bounds.left = child.getLeft() - params.leftMargin - halfSize + transitionX;
+                bounds.top = child.getTop() - params.topMargin - halfSize + transitionY;
             } else {
-                bounds.left = child.getRight() + params.rightMargin + halfSize + transitionX;
+                bounds.top = child.getBottom() + params.bottomMargin + halfSize + transitionY;
             }
-            bounds.right = bounds.left;
+            bounds.bottom = bounds.top;
         }
 
         if (mPositionInsideItem) {
             if (isReverseLayout) {
-                bounds.left += dividerSize;
-                bounds.right += dividerSize;
+                bounds.top += dividerSize;
+                bounds.bottom += dividerSize;
             } else {
-                bounds.left -= dividerSize;
-                bounds.right -= dividerSize;
+                bounds.top -= dividerSize;
+                bounds.bottom -= dividerSize;
             }
         }
 
@@ -160,37 +160,37 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
             int transitionX = (int) ViewCompat.getTranslationX(child);
             int transitionY = (int) ViewCompat.getTranslationY(child);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            bounds.top = child.getTop() + mMarginProvider.dividerTopMargin(position, parent) + transitionY;
-            bounds.bottom = child.getBottom() - mMarginProvider.dividerBottomMargin(position, parent) + transitionY;
+            bounds.left = child.getLeft() + mMarginProvider.dividerLeftMargin(position, parent) + transitionX;
+            bounds.right = child.getRight() - mMarginProvider.dividerRightMargin(position, parent) + transitionX;
             int dividerSize = getDividerSize(position, parent);
             boolean isReverseLayout = isReverseLayout(parent);
             if (mDividerType == DividerType.DRAWABLE) {
                 // set left and right position of divider
                 if (isReverseLayout) {
-                    bounds.left = child.getRight() + params.leftMargin + transitionX;
-                    bounds.right = bounds.left + dividerSize;
+                    bounds.top = child.getBottom() + params.bottomMargin + transitionY;
+                    bounds.bottom = bounds.top + dividerSize;
                 } else {
-                    bounds.right = child.getLeft() - params.rightMargin + transitionX;
-                    bounds.left = bounds.right - dividerSize;
+                    bounds.bottom = child.getTop() - params.topMargin + transitionY;
+                    bounds.top = bounds.bottom - dividerSize;
                 }
             } else {
                 // set center point of divider
                 int halfSize = dividerSize / 2;
                 if (isReverseLayout) {
-                    bounds.left = child.getRight() + params.leftMargin + halfSize + transitionX;
+                    bounds.top = child.getBottom() + params.bottomMargin + halfSize + transitionY;
                 } else {
-                    bounds.left = child.getLeft() - params.rightMargin - halfSize + transitionX;
+                    bounds.top = child.getTop() - params.topMargin - halfSize + transitionY;
                 }
-                bounds.right = bounds.left;
+                bounds.bottom = bounds.top;
             }
 
             if (mPositionInsideItem) {
                 if (isReverseLayout) {
-                    bounds.left -= dividerSize;
-                    bounds.right -= dividerSize;
+                    bounds.top -= dividerSize;
+                    bounds.bottom -= dividerSize;
                 } else {
-                    bounds.left += dividerSize;
-                    bounds.right += dividerSize;
+                    bounds.top += dividerSize;
+                    bounds.bottom += dividerSize;
                 }
             }
             return bounds;
@@ -206,7 +206,7 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
             super.getItemOffsets(rect, v, parent, state);
             return;
         }
-        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.VERTICAL) {
             super.getItemOffsets(rect, v, parent, state);
             return;
         }
@@ -222,7 +222,7 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
             super.setItemOffsets(outRect, position, parent);
             return;
         }
-        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.VERTICAL) {
             super.setItemOffsets(outRect, position, parent);
             return;
         }
@@ -242,15 +242,15 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
         if (showDividerOnEdge) {
             if (spanIndex % spanCount == 0) {
                 if (isReverseLayout(parent)) {
-                    right += getDividerSize(position, parent);
+                    bottom += getDividerSize(position, parent);
                 } else {
-                    left += getDividerSize(position, parent);
+                    top += getDividerSize(position, parent);
                 }
             } else if (spanIndex % spanCount == spanCount - 1) {
                 if (isReverseLayout(parent)) {
-                    left += getDividerSize(position, parent);
+                    top += getDividerSize(position, parent);
                 } else {
-                    right += getDividerSize(position, parent);
+                    bottom += getDividerSize(position, parent);
                 }
             }
         }
@@ -260,9 +260,9 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
             return;
         }
         if (isReverseLayout(parent)) {
-            left += getDividerSize(position, parent);
+            top += getDividerSize(position, parent);
         } else {
-            right += getDividerSize(position, parent);
+            bottom += getDividerSize(position, parent);
         }
         outRect.set(left, top, right, bottom);
     }
@@ -272,7 +272,7 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
         if (!(parent.getLayoutManager() instanceof GridLayoutManager)) {
             return super.getLastDividerOffset(parent);
         }
-        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.VERTICAL) {
             return super.getLastDividerOffset(parent);
         }
         return 1;
@@ -283,7 +283,7 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
         if (!(parent.getLayoutManager() instanceof GridLayoutManager)) {
             return super.getGroupIndex(position, parent);
         }
-        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.VERTICAL) {
             return super.getGroupIndex(position, parent);
         }
         return position;
@@ -294,27 +294,27 @@ public class GridVerticalDividerItemDecoration extends VerticalDividerItemDecora
         if (!(parent.getLayoutManager() instanceof GridLayoutManager)) {
             return super.wasDividerAlreadyDrawn(position, parent);
         }
-        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (((GridLayoutManager) parent.getLayoutManager()).getOrientation() == LinearLayoutManager.VERTICAL) {
             return super.wasDividerAlreadyDrawn(position, parent);
         }
         return false;
     }
 
-    public static class Builder extends VerticalDividerItemDecoration.Builder {
+    public static class Builder extends HorizontalDividerItemDecoration.Builder {
         private boolean showDividerOnEdge;
 
         public Builder(Context context) {
             super(context);
         }
 
-        public Builder showDividerOnEdge() {
+        public GridHorizontalDividerItemDecoration.Builder showDividerOnEdge() {
             showDividerOnEdge = true;
             return this;
         }
 
         @Override
-        public GridVerticalDividerItemDecoration build() {
-            return new GridVerticalDividerItemDecoration(this);
+        public GridHorizontalDividerItemDecoration build() {
+            return new GridHorizontalDividerItemDecoration(this);
         }
     }
 }
