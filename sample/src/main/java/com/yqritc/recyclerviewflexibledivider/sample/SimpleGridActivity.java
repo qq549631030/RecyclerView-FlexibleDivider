@@ -1,9 +1,11 @@
 package com.yqritc.recyclerviewflexibledivider.sample;
 
+import com.yqritc.recyclerviewflexibledivider.GridVerticalDividerItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,7 +34,8 @@ public class SimpleGridActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.main_recyclerview);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).build());
+        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).color(Color.GREEN).size(20).build());
+        recyclerView.addItemDecoration(new GridVerticalDividerItemDecoration.Builder(this).showDividerOnEdge().color(Color.GREEN).size(20).build());
     }
 
 
