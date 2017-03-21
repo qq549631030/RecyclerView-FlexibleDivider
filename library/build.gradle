@@ -9,12 +9,13 @@ android {
         targetSdkVersion TARGET_SDK_VERSION as int
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
+        archivesBaseName = ARTIFACT_ID
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:recyclerview-v7:25.3.0'
 }
 
 android.libraryVariants.all { variant ->
@@ -36,5 +37,11 @@ android.libraryVariants.all { variant ->
     }
 }
 
-apply from: 'android-artifacts.gradle'
-apply from: 'bintray-publish.gradle'
+//apply from: 'android-artifacts.gradle'
+//apply from: 'bintray-publish.gradle'
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+}
+
+apply from: "bintrayUpload.gradle"
