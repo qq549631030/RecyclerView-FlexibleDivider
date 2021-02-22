@@ -1,7 +1,6 @@
 # RecyclerView-FlexibleDivider
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RecyclerView--FlexibleDivider-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1418)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Download](https://api.bintray.com/packages/yqritc/maven/recyclerview-flexibledivider/images/download.svg)](https://bintray.com/yqritc/maven/recyclerview-flexibledivider/_latestVersion)
 
 Android library providing simple way to control divider items of RecyclerView
 
@@ -9,16 +8,14 @@ Android library providing simple way to control divider items of RecyclerView
 
 # Release Note
 
-[Release Note] (https://github.com/yqritc/RecyclerView-FlexibleDivider/releases)
-
 # Gradle
 ```groovy
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    compile 'com.github.qq549631030:recyclerview-flexibledivider:1.5.2'
 }
 ```
 

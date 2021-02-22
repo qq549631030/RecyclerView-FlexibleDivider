@@ -2,14 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.yqritc.recyclerviewflexibledivider.sample"
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
-        versionCode VERSION_CODE as int
-        versionName VERSION_NAME
+        versionCode 1
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -20,8 +19,8 @@ android {
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
 //    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:recyclerview-v7:25.3.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 }
